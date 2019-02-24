@@ -11,7 +11,6 @@ RUN cd /opt/sonarqube/extensions/plugins && \
 	curl -LO https://binaries.sonarsource.com/Distribution/sonar-jacoco-plugin/sonar-jacoco-plugin-1.0.1.143.jar && \
 	curl -LO https://github.com/jensgerdes/sonar-pmd/releases/download/3.1.3/sonar-pmd-plugin-3.1.3.jar && \
 	curl -LO https://github.com/racodond/sonar-css-plugin/releases/download/4.18/sonar-css-plugin-4.18.jar && \
-	curl -LO https://binaries.sonarsource.com/Distribution/sonar-html-plugin/sonar-html-plugin-3.1.0.1615.jar && \
 	curl -LO https://github.com/SonarSource/SonarJS/releases/download/5.0.0.6962/sonar-javascript-plugin-5.0.0.6962.jar && \
 	curl -LO https://binaries.sonarsource.com/Distribution/sonar-java-plugin/sonar-java-plugin-5.11.0.17289.jar && \
 	curl -LO https://binaries.sonarsource.com/Distribution/sonar-scala-plugin/sonar-scala-plugin-1.4.0.155.jar && \

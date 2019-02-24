@@ -41,8 +41,5 @@ services:
       - ./mysql:/var/lib/mysql
   smtp-server:
     image: namshi/smtp
-    environment:
-        - SMARTHOST_ADDRESS=XXX
-        - SMARTHOST_PORT=XXX
-        - SMARTHOST_USER=XXX
-        - SMARTHOST_PASSWORD=XXX
+    ports:
+      - "10025:25"
