@@ -1,0 +1,48 @@
+version: '3.7'
+services:
+  jenkins:
+    image: migalvcon/jenkins-docker:latest
+    ports:
+      - 8080:8080
+    volumes:
+      - ./jenkins/home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - sonarqube
+      - smtp-server
+  sonarqube:
+    image: migalvcon/sonarqube-docker:latest
+    ports:
+      - 9000:9000
+      - 9092:9092
+    volumes:
+      - ./sonarqube/conf:/opt/sonarqube/conf
+      - ./sonarqube/data:/opt/sonarqube/data
+    environment:
+      - SONARQUBE_JDBC_USERNAME=sonarqube
+      - SONARQUBE_JDBC_PASSWORD=sonarqube
+      - SONARQUBE_JDBC_URL=jdbc:mysql://mysql-sonarqube:3306/sonarqube?useUnicode=true&characterEncoding=utf8&useSSL=false
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-hdatabase", "-usonar", "-psonar"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    depends_on:
+      - mysql-sonarqube
+  mysql-sonarqube:
+    image: mysql:5.7.23
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=sonarqube
+      - MYSQL_USER=sonarqube
+      - MYSQL_PASSWORD=sonarqube
+    volumes:
+      - ./mysql:/var/lib/mysql
+  smtp-server:
+    image: namshi/smtp
+    environment:
+        - SMARTHOST_ADDRESS=XXX
+        - SMARTHOST_PORT=XXX
+        - SMARTHOST_USER=XXX
+        - SMARTHOST_PASSWORD=XXX

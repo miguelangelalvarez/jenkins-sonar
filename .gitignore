@@ -1,0 +1,8 @@
+# -----------------------------------------
+# Folders
+# -----------------------------------------
+.idea
+jenkins/home
+mysql
+sonarqube/conf
+sonarqube/data
